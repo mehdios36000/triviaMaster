@@ -26,9 +26,7 @@ class _QuestionState extends State<Question> {
                     },
                   ),
                 ),
-            
-                
-                
+
            Column(
               
               children: <Widget>[
