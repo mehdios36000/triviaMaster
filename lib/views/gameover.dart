@@ -5,12 +5,10 @@ import 'package:triviamaster/views/home.dart';
 
 class GameOver extends StatefulWidget {
   var score = 0;
-  GameOver({Key? key, required score}) : super(key: key);
-  
+  GameOver({Key? key, required this.score}) : super(key: key);
 
   @override
   State<GameOver> createState() => _GameOverState();
-
 }
 
 class _GameOverState extends State<GameOver> {
