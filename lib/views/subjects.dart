@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:triviamaster/views/question.dart';
+import 'package:http/http.dart' as http;
 
 class Subjects extends StatefulWidget {
   const Subjects({Key? key}) : super(key: key);
@@ -63,10 +67,17 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('Science'),
                         //add icon
                         leading: Icon(Icons.science),
-                        onTap: () {
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=science&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Question()),
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score:0)),
                           );
                         },
                       ),
@@ -82,7 +93,19 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('Music'),
                         //add icon
                         leading: Icon(Icons.music_note),
-                        onTap: () {},
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=music&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score:0)),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -96,7 +119,19 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('Film & TV'),
                         //add icon
                         leading: Icon(Icons.tv),
-                        onTap: () {},
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score: 0)),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -110,7 +145,19 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('History'),
                         //add icon
                         leading: Icon(Icons.history_edu),
-                        onTap: () {},
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=history&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score: 0)),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -124,7 +171,19 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('Geography'),
                         //add icon
                         leading: Icon(Icons.location_on),
-                        onTap: () {},
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=geography&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score: 0)),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -138,7 +197,19 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('Sport & Leisure'),
                         //add icon
                         leading: Icon(Icons.sports_football),
-                        onTap: () {},
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=sport_and_leisure&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score:0)),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -152,7 +223,19 @@ class _SubjectsState extends State<Subjects> {
                         title: Text('General Knowledge'),
                         //add icon
                         leading: Icon(Icons.public),
-                        onTap: () {},
+                        onTap: () async {
+                          var url =
+                              "https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=50";
+                          var response = await http.get(Uri.parse(url));
+                          List<dynamic> data = json.decode(response.body);
+                          var counter = 0;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Question(counter: counter, data: data,score: 0)),
+                          );
+                        },
                       ),
                     ),
                   ),
