@@ -81,7 +81,8 @@ class _QuestionState extends State<Question> {
                   style: TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: Colors.white,
+                      fontFamily: 'roboto'),
                 ),
               ),
             ),
@@ -103,7 +104,8 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.black,
+                              fontFamily: 'roboto'),
                         ),
                         onTap: () {
                           widget.counter++;
@@ -150,7 +152,8 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.black,
+                              fontFamily: 'roboto'),
                         ),
                         onTap: () {
                           widget.counter++;
@@ -196,7 +199,8 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.black,
+                              fontFamily: 'roboto'),
                         ),
                         onTap: () {
                           widget.counter++;
@@ -242,7 +246,8 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.black,
+                              fontFamily: 'roboto'),
                         ),
                         onTap: () {
                           widget.counter++;

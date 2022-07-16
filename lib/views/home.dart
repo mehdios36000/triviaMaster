@@ -37,7 +37,8 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                     fontSize: 40.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: Colors.white,
+                    fontFamily: 'roboto'),
               ),
               SizedBox(
                 height: 20.0,
@@ -47,7 +48,8 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: Colors.white,
+                    fontFamily: 'roboto'),
               ),
               SizedBox(
                 height: 20.0,
@@ -59,7 +61,8 @@ class _HomeState extends State<Home> {
                   style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF1C2341)),
+                      color: Color(0xFF1C2341),
+                      fontFamily: 'roboto'),
                 ),
                 onPressed: () {
                   Navigator.push(

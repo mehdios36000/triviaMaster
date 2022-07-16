@@ -46,7 +46,8 @@ class _SubjectsState extends State<Subjects> {
                       style: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Colors.white,
+                          fontFamily: 'Roboto'),
                     ),
                   ),
                   SizedBox(
@@ -59,7 +60,8 @@ class _SubjectsState extends State<Subjects> {
                       style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Colors.white,
+                           fontFamily: 'Roboto'),
                     ),
                   ),
                   SizedBox(
@@ -69,7 +71,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('Science'),
+                        title: Text('Science',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.science),
                         onTap: () async {
@@ -98,7 +105,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('Music'),
+                        title: Text('Music',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.music_note),
                         onTap: () async {
@@ -126,7 +138,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('Film & TV'),
+                        title: Text('Film & TV',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.tv),
                         onTap: () async {
@@ -154,7 +171,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('History'),
+                        title: Text('History',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.history_edu),
                         onTap: () async {
@@ -182,7 +204,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('Geography'),
+                        title: Text('Geography',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.location_on),
                         onTap: () async {
@@ -210,7 +237,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('Sport & Leisure'),
+                        title: Text('Sport & Leisure',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.sports_football),
                         onTap: () async {
@@ -238,7 +270,12 @@ class _SubjectsState extends State<Subjects> {
                     margin: EdgeInsets.only(right: 95, left: 95),
                     child: Card(
                       child: ListTile(
-                        title: Text('General Knowledge'),
+                        title: Text('General Knowledge',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Roboto')),
                         //add icon
                         leading: Icon(Icons.public),
                         onTap: () async {
