@@ -4,11 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:triviamaster/views/question.dart';
 import 'package:http/http.dart' as http;
 
 class Subjects extends StatefulWidget {
-  const Subjects({Key? key}) : super(key: key);
+  final audio;
+  const Subjects({Key? key, required this.audio}) : super(key: key);
 
   @override
   State<Subjects> createState() => _SubjectsState();
@@ -20,7 +22,10 @@ class _SubjectsState extends State<Subjects> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(color: Colors.blue[700]),
+          SvgPicture.asset("assets/images/bg.svg",
+              fit: BoxFit.fill,
+              height: double.infinity,
+              width: double.infinity),
           SingleChildScrollView(
             child: Stack(children: <Widget>[
               Container(
@@ -68,16 +73,19 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.science),
                         onTap: () async {
+                          widget.audio.stop();
+
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=science&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="science";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score:0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),
@@ -94,16 +102,18 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.music_note),
                         onTap: () async {
+                          widget.audio.stop();
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=music&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="music";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score:0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),
@@ -120,16 +130,18 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.tv),
                         onTap: () async {
+                          widget.audio.stop();
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="film_and_tv";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score: 0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),
@@ -146,16 +158,18 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.history_edu),
                         onTap: () async {
+                          widget.audio.stop();
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=history&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="history";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score: 0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),
@@ -172,16 +186,18 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.location_on),
                         onTap: () async {
+                          widget.audio.stop();
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=geography&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="geography";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score: 0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),
@@ -198,16 +214,18 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.sports_football),
                         onTap: () async {
+                          widget.audio.stop();
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=sport_and_leisure&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="sport_and_leisure";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score:0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),
@@ -224,16 +242,18 @@ class _SubjectsState extends State<Subjects> {
                         //add icon
                         leading: Icon(Icons.public),
                         onTap: () async {
+                          widget.audio.stop();
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=50";
                           var response = await http.get(Uri.parse(url));
+                          var category="general_knowledge";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Question(counter: counter, data: data,score: 0)),
+                                builder: (context) => Question(
+                                    counter: counter, data: data, score: 0,category:category)),
                           );
                         },
                       ),

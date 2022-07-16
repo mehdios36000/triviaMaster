@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:triviamaster/views/home.dart';
 
@@ -11,13 +12,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
+
   @override
   Widget build(BuildContext context) {
+   
     return MaterialApp(
       title: 'Trivia Master',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      debugShowCheckedModeBanner: false,
       home: const Home(),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:triviamaster/views/home.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 class GameOver extends StatefulWidget {
   var score = 0;
@@ -14,10 +16,19 @@ class GameOver extends StatefulWidget {
 class _GameOverState extends State<GameOver> {
   @override
   Widget build(BuildContext context) {
+    final assetsAudioPlayer = AssetsAudioPlayer();
+    assetsAudioPlayer.open(
+      Audio("assets/audios/gameover.mp3"),
+      autoStart: true,
+      showNotification: true,
+    );
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(color: Colors.blue[700]),
+          SvgPicture.asset("assets/images/bg.svg",
+              fit: BoxFit.fill,
+              height: double.infinity,
+              width: double.infinity),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -43,13 +54,13 @@ class _GameOverState extends State<GameOver> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.white,
+                  color: Colors.blueGrey,
                   child: Text(
                     'Restart',
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue[700]),
+                        color: Color(0xFF1C2341)),
                   ),
                   onPressed: () {
                     Navigator.push(

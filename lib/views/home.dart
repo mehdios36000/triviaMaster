@@ -1,7 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:triviamaster/views/subjects.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,10 +15,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final assetsAudioPlayer = AssetsAudioPlayer();
+    assetsAudioPlayer.open(
+      Audio("assets/audios/background.mp3"),
+      autoStart: true,
+      loopMode: LoopMode.single,
+      showNotification: true,
+    );
     return Scaffold(
         body: Stack(
       children: <Widget>[
-        Container(color: Colors.blue[700]),
+        //fill the screen with the bg whole screen
+        SvgPicture.asset("assets/images/bg.svg",
+            fit: BoxFit.fill, height: double.infinity, width: double.infinity),
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,18 +53,20 @@ class _HomeState extends State<Home> {
                 height: 20.0,
               ),
               RaisedButton(
-                color: Colors.white,
+                color: Colors.blueGrey,
                 child: Text(
                   'Start',
                   style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue[700]),
+                      color: Color(0xFF1C2341)),
                 ),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Subjects()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Subjects(audio: assetsAudioPlayer)),
                   );
                 },
               ),

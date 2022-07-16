@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:triviamaster/views/gameover.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:http/http.dart' as http;
 
 class Question extends StatefulWidget {
   List<dynamic> data = [];
@@ -9,12 +14,14 @@ class Question extends StatefulWidget {
   String question = "";
   String correctAnswer = "";
   List<dynamic> allAnswers = [];
+  String category = "";
   var score = 0;
   Question(
       {Key? key,
       required this.counter,
       required this.data,
-      required this.score})
+      required this.score,
+      required this.category})
       : super(key: key);
 
   @override
@@ -24,6 +31,21 @@ class Question extends StatefulWidget {
 class _QuestionState extends State<Question> {
   @override
   Widget build(BuildContext context) {
+    final assetsAudioPlayer = AssetsAudioPlayer();
+    assetsAudioPlayer.open(
+      Audio("assets/audios/questions.mp3"),
+      autoStart: true,
+      loopMode: LoopMode.single,
+      showNotification: true,
+    );
+    if (widget.counter == 50) {
+      var url =
+          "https://the-trivia-api.com/api/questions?categories=${widget.category}&limit=50";
+      http.get(Uri.parse(url)).then((response) {
+        widget.data = json.decode(response.body);
+      });
+      widget.counter = 0;
+    }
     if (widget.question == "") {
       widget.question = widget.data[widget.counter]['question'];
       widget.correctAnswer = widget.data[widget.counter]['correctAnswer'];
@@ -31,10 +53,12 @@ class _QuestionState extends State<Question> {
       widget.allAnswers.add(widget.correctAnswer);
       widget.allAnswers.shuffle();
     }
+
     return Scaffold(
         body: Stack(
       children: <Widget>[
-        Container(color: Colors.blue[700]),
+        SvgPicture.asset("assets/images/bg.svg",
+            fit: BoxFit.fill, height: double.infinity, width: double.infinity),
         Container(
           margin: EdgeInsets.only(top: 20),
           child: IconButton(
@@ -79,12 +103,17 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue[700]),
+                              color: Colors.black),
                         ),
                         onTap: () {
                           widget.counter++;
                           //if the answer is correct
                           if (widget.allAnswers[0] == widget.correctAnswer) {
+                            assetsAudioPlayer.open(
+                              Audio("assets/audios/correct.mp3"),
+                              autoStart: true,
+                              showNotification: true,
+                            );
                             widget.score = widget.score + 10;
                             print(widget.score);
                             Navigator.push(
@@ -93,9 +122,12 @@ class _QuestionState extends State<Question> {
                                   builder: (context) => Question(
                                       counter: widget.counter,
                                       data: widget.data,
-                                      score: widget.score)),
+                                      score: widget.score,
+                                      category: widget.category)),
                             );
                           } else {
+                            //stop the audio player
+                            assetsAudioPlayer.stop();
                             var finalScore = widget.score;
 
                             Navigator.push(
@@ -118,12 +150,17 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue[700]),
+                              color: Colors.black),
                         ),
                         onTap: () {
                           widget.counter++;
                           //if the answer is correct
                           if (widget.allAnswers[1] == widget.correctAnswer) {
+                            assetsAudioPlayer.open(
+                              Audio("assets/audios/correct.mp3"),
+                              autoStart: true,
+                              showNotification: true,
+                            );
                             widget.score = widget.score + 10;
                             print(widget.score);
                             Navigator.push(
@@ -132,9 +169,12 @@ class _QuestionState extends State<Question> {
                                   builder: (context) => Question(
                                       counter: widget.counter,
                                       data: widget.data,
-                                      score: widget.score)),
+                                      score: widget.score,
+                                      category: widget.category)),
                             );
                           } else {
+                            //stop the audio player
+                            assetsAudioPlayer.stop();
                             var finalScore = widget.score;
                             Navigator.push(
                               context,
@@ -156,12 +196,17 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue[700]),
+                              color: Colors.black),
                         ),
                         onTap: () {
                           widget.counter++;
                           //if the answer is correct
                           if (widget.allAnswers[2] == widget.correctAnswer) {
+                            assetsAudioPlayer.open(
+                              Audio("assets/audios/correct.mp3"),
+                              autoStart: true,
+                              showNotification: true,
+                            );
                             widget.score = widget.score + 10;
                             print(widget.score);
                             Navigator.push(
@@ -170,9 +215,12 @@ class _QuestionState extends State<Question> {
                                   builder: (context) => Question(
                                       counter: widget.counter,
                                       data: widget.data,
-                                      score: widget.score)),
+                                      score: widget.score,
+                                      category: widget.category)),
                             );
                           } else {
+                            //stop the audio player
+                            assetsAudioPlayer.stop();
                             var finalScore = widget.score;
                             Navigator.push(
                               context,
@@ -194,12 +242,17 @@ class _QuestionState extends State<Question> {
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue[700]),
+                              color: Colors.black),
                         ),
                         onTap: () {
                           widget.counter++;
                           //if the answer is correct
                           if (widget.allAnswers[3] == widget.correctAnswer) {
+                            assetsAudioPlayer.open(
+                              Audio("assets/audios/correct.mp3"),
+                              autoStart: true,
+                              showNotification: true,
+                            );
                             widget.score = widget.score + 10;
                             print(widget.score);
 
@@ -209,9 +262,12 @@ class _QuestionState extends State<Question> {
                                   builder: (context) => Question(
                                       counter: widget.counter,
                                       data: widget.data,
-                                      score: widget.score)),
+                                      score: widget.score,
+                                      category: widget.category)),
                             );
                           } else {
+                            //stop the audio player
+                            assetsAudioPlayer.stop();
                             var finalScore = widget.score;
                             Navigator.push(
                               context,
