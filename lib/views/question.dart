@@ -59,6 +59,7 @@ class _QuestionState extends State<Question> {
       widget.allAnswers.add(widget.correctAnswer);
       widget.allAnswers.shuffle();
     }
+    final sound_2 = AssetsAudioPlayer();
 
     return Scaffold(
         body: Stack(
@@ -152,8 +153,7 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[0] ==
                                     widget.correctAnswer) {
-                                  widget.sound.stop();
-                                  widget.sound.open(
+                                  sound_2.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -203,8 +203,7 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[1] ==
                                     widget.correctAnswer) {
-                                  widget.sound.stop();
-                                  widget.sound.open(
+                                  sound_2.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -252,8 +251,7 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[2] ==
                                     widget.correctAnswer) {
-                                  widget.sound.stop();
-                                  widget.sound.open(
+                                  sound_2.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -301,8 +299,7 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[3] ==
                                     widget.correctAnswer) {
-                                  widget.sound.stop();
-                                  widget.sound.open(
+                                  sound_2.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
