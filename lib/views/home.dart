@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
     assetsAudioPlayer.open(
-      Audio("assets/audios/background.mp3"),
+      Audio("assets/audios/background.wav"),
       autoStart: true,
       loopMode: LoopMode.single,
       showNotification: true,

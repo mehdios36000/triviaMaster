@@ -18,7 +18,7 @@ class _GameOverState extends State<GameOver> {
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
     assetsAudioPlayer.open(
-      Audio("assets/audios/gameover.mp3"),
+      Audio("assets/audios/gameover.wav"),
       autoStart: true,
       showNotification: true,
     );
