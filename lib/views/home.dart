@@ -16,15 +16,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
-    //check if the audio is playing
-    if (!assetsAudioPlayer.isPlaying.value) {
-      assetsAudioPlayer.open(
-        Audio("assets/audios/background.mp3"),
-        autoStart: true,
-         loopMode: LoopMode.single,
-        showNotification: true,
-      );
-    }
 
     return Scaffold(
         body: Stack(
@@ -69,6 +60,14 @@ class _HomeState extends State<Home> {
                       fontFamily: 'roboto'),
                 ),
                 onPressed: () {
+                  if (!assetsAudioPlayer.isPlaying.value) {
+                    assetsAudioPlayer.open(
+                      Audio("assets/audios/background.mp3"),
+                      autoStart: true,
+                      loopMode: LoopMode.single,
+                      showNotification: true,
+                    );
+                  }
                   Navigator.push(
                     context,
                     MaterialPageRoute(
