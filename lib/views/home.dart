@@ -21,6 +21,7 @@ class _HomeState extends State<Home> {
       assetsAudioPlayer.open(
         Audio("assets/audios/background.mp3"),
         autoStart: true,
+         loopMode: LoopMode.single,
         showNotification: true,
       );
     }

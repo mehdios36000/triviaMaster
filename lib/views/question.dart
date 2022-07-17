@@ -41,6 +41,7 @@ class _QuestionState extends State<Question> {
       widget.sound.open(
         Audio("assets/audios/questions.mp3"),
         autoStart: true,
+        loopMode: LoopMode.single,
         showNotification: true,
       );
     }
