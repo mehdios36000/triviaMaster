@@ -37,7 +37,7 @@ class _QuestionState extends State<Question> {
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
     assetsAudioPlayer.open(
-      Audio("assets/audios/questions.wav"),
+      Audio("assets/audios/questions.mp3"),
       autoStart: true,
       loopMode: LoopMode.single,
       showNotification: true,
@@ -63,31 +63,28 @@ class _QuestionState extends State<Question> {
       children: <Widget>[
         SvgPicture.asset("assets/images/bg.svg",
             fit: BoxFit.fill, height: double.infinity, width: double.infinity),
-           
         SingleChildScrollView(
           child: Stack(
             children: [
-               Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
-                      onPressed: () {
-                        assetsAudioPlayer.stop();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+                  onPressed: () {
+                    assetsAudioPlayer.stop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    );
+                  },
+                ),
+              ),
               Column(
                 children: [
-                  
                   SizedBox(
                     height: 100,
-                  
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 20),
@@ -108,7 +105,6 @@ class _QuestionState extends State<Question> {
                   Container(
                     margin: EdgeInsets.only(top: 20),
                     padding: EdgeInsets.symmetric(horizontal: 20),
-
                     child: LinearPercentIndicator(
                       lineHeight: 10.0,
                       percent: 1.0,
@@ -152,7 +148,8 @@ class _QuestionState extends State<Question> {
                               onTap: () {
                                 widget.counter++;
                                 //if the answer is correct
-                                if (widget.allAnswers[0] == widget.correctAnswer) {
+                                if (widget.allAnswers[0] ==
+                                    widget.correctAnswer) {
                                   assetsAudioPlayer.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
@@ -200,7 +197,8 @@ class _QuestionState extends State<Question> {
                               onTap: () {
                                 widget.counter++;
                                 //if the answer is correct
-                                if (widget.allAnswers[1] == widget.correctAnswer) {
+                                if (widget.allAnswers[1] ==
+                                    widget.correctAnswer) {
                                   assetsAudioPlayer.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
@@ -246,7 +244,8 @@ class _QuestionState extends State<Question> {
                               onTap: () {
                                 widget.counter++;
                                 //if the answer is correct
-                                if (widget.allAnswers[2] == widget.correctAnswer) {
+                                if (widget.allAnswers[2] ==
+                                    widget.correctAnswer) {
                                   assetsAudioPlayer.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
@@ -292,7 +291,8 @@ class _QuestionState extends State<Question> {
                               onTap: () {
                                 widget.counter++;
                                 //if the answer is correct
-                                if (widget.allAnswers[3] == widget.correctAnswer) {
+                                if (widget.allAnswers[3] ==
+                                    widget.correctAnswer) {
                                   assetsAudioPlayer.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
