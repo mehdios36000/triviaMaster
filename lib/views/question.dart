@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:triviamaster/views/gameover.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:http/http.dart' as http;
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Question extends StatefulWidget {
   List<dynamic> data = [];
@@ -29,19 +30,11 @@ class Question extends StatefulWidget {
 }
 
 class _QuestionState extends State<Question> {
+  //function to change the time
+
   @override
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
-    Future.delayed(Duration(seconds: 30), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => GameOver(
-            score: widget.score,
-          ),
-        ),
-      );
-    });
     assetsAudioPlayer.open(
       Audio("assets/audios/questions.mp3"),
       autoStart: true,
@@ -99,203 +92,227 @@ class _QuestionState extends State<Question> {
             SizedBox(
               height: 40,
             ),
-            //4 cards for the options
             Container(
-              margin: EdgeInsets.only(left: 95, right: 95),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    child: Card(
-                      color: Colors.white,
-                      child: ListTile(
-                        title: Text(
-                          widget.allAnswers[0],
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'roboto'),
-                        ),
-                        onTap: () {
-                          widget.counter++;
-                          //if the answer is correct
-                          if (widget.allAnswers[0] == widget.correctAnswer) {
-                            assetsAudioPlayer.open(
-                              Audio("assets/audios/correct.mp3"),
-                              autoStart: true,
-                              showNotification: true,
-                            );
-                            widget.score = widget.score + 10;
-                            print(widget.score);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Question(
-                                      counter: widget.counter,
-                                      data: widget.data,
-                                      score: widget.score,
-                                      category: widget.category)),
-                            );
-                          } else {
-                            //stop the audio player
-                            assetsAudioPlayer.stop();
-                            var finalScore = widget.score;
+              margin: EdgeInsets.only(top: 20),
+              child: LinearPercentIndicator(
+                lineHeight: 10.0,
+                percent: 1.0,
+                animation: true,
+                animationDuration: 20000,
+                backgroundColor: Colors.white,
+                progressColor: Colors.blueGrey,
+                onAnimationEnd: () {
+                  assetsAudioPlayer.stop();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GameOver(
+                        score: widget.score,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      GameOver(score: finalScore)),
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: Card(
-                      color: Colors.white,
-                      child: ListTile(
-                        title: Text(
-                          widget.allAnswers[1],
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'roboto'),
+            //4 cards for the options
+            SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(left: 95, right: 95),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      child: Card(
+                        color: Colors.white,
+                        child: ListTile(
+                          title: Text(
+                            widget.allAnswers[0],
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'roboto'),
+                          ),
+                          onTap: () {
+                            widget.counter++;
+                            //if the answer is correct
+                            if (widget.allAnswers[0] == widget.correctAnswer) {
+                              assetsAudioPlayer.open(
+                                Audio("assets/audios/correct.mp3"),
+                                autoStart: true,
+                                showNotification: true,
+                              );
+                              //stop the future delay function
+                              widget.score = widget.score + 10;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Question(
+                                        counter: widget.counter,
+                                        data: widget.data,
+                                        score: widget.score,
+                                        category: widget.category)),
+                              );
+                            } else {
+                              //stop the audio player
+                              assetsAudioPlayer.stop();
+                              var finalScore = widget.score;
+            
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        GameOver(score: finalScore)),
+                              );
+                            }
+                          },
                         ),
-                        onTap: () {
-                          widget.counter++;
-                          //if the answer is correct
-                          if (widget.allAnswers[1] == widget.correctAnswer) {
-                            assetsAudioPlayer.open(
-                              Audio("assets/audios/correct.mp3"),
-                              autoStart: true,
-                              showNotification: true,
-                            );
-                            widget.score = widget.score + 10;
-                            print(widget.score);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Question(
-                                      counter: widget.counter,
-                                      data: widget.data,
-                                      score: widget.score,
-                                      category: widget.category)),
-                            );
-                          } else {
-                            //stop the audio player
-                            assetsAudioPlayer.stop();
-                            var finalScore = widget.score;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      GameOver(score: finalScore)),
-                            );
-                          }
-                        },
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Card(
-                      color: Colors.white,
-                      child: ListTile(
-                        title: Text(
-                          widget.allAnswers[2],
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'roboto'),
+                    Container(
+                      child: Card(
+                        color: Colors.white,
+                        child: ListTile(
+                          title: Text(
+                            widget.allAnswers[1],
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'roboto'),
+                          ),
+                          onTap: () {
+                            widget.counter++;
+                            //if the answer is correct
+                            if (widget.allAnswers[1] == widget.correctAnswer) {
+                              assetsAudioPlayer.open(
+                                Audio("assets/audios/correct.mp3"),
+                                autoStart: true,
+                                showNotification: true,
+                              );
+                              widget.score = widget.score + 10;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Question(
+                                        counter: widget.counter,
+                                        data: widget.data,
+                                        score: widget.score,
+                                        category: widget.category)),
+                              );
+                            } else {
+                              //stop the audio player
+                              assetsAudioPlayer.stop();
+                              var finalScore = widget.score;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        GameOver(score: finalScore)),
+                              );
+                            }
+                          },
                         ),
-                        onTap: () {
-                          widget.counter++;
-                          //if the answer is correct
-                          if (widget.allAnswers[2] == widget.correctAnswer) {
-                            assetsAudioPlayer.open(
-                              Audio("assets/audios/correct.mp3"),
-                              autoStart: true,
-                              showNotification: true,
-                            );
-                            widget.score = widget.score + 10;
-                            print(widget.score);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Question(
-                                      counter: widget.counter,
-                                      data: widget.data,
-                                      score: widget.score,
-                                      category: widget.category)),
-                            );
-                          } else {
-                            //stop the audio player
-                            assetsAudioPlayer.stop();
-                            var finalScore = widget.score;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      GameOver(score: finalScore)),
-                            );
-                          }
-                        },
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Card(
-                      color: Colors.white,
-                      child: ListTile(
-                        title: Text(
-                          widget.allAnswers[3],
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'roboto'),
+                    Container(
+                      child: Card(
+                        color: Colors.white,
+                        child: ListTile(
+                          title: Text(
+                            widget.allAnswers[2],
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'roboto'),
+                          ),
+                          onTap: () {
+                            widget.counter++;
+                            //if the answer is correct
+                            if (widget.allAnswers[2] == widget.correctAnswer) {
+                              assetsAudioPlayer.open(
+                                Audio("assets/audios/correct.mp3"),
+                                autoStart: true,
+                                showNotification: true,
+                              );
+                              widget.score = widget.score + 10;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Question(
+                                        counter: widget.counter,
+                                        data: widget.data,
+                                        score: widget.score,
+                                        category: widget.category)),
+                              );
+                            } else {
+                              //stop the audio player
+                              assetsAudioPlayer.stop();
+                              var finalScore = widget.score;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        GameOver(score: finalScore)),
+                              );
+                            }
+                          },
                         ),
-                        onTap: () {
-                          widget.counter++;
-                          //if the answer is correct
-                          if (widget.allAnswers[3] == widget.correctAnswer) {
-                            assetsAudioPlayer.open(
-                              Audio("assets/audios/correct.mp3"),
-                              autoStart: true,
-                              showNotification: true,
-                            );
-                            widget.score = widget.score + 10;
-                            print(widget.score);
-
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Question(
-                                      counter: widget.counter,
-                                      data: widget.data,
-                                      score: widget.score,
-                                      category: widget.category)),
-                            );
-                          } else {
-                            //stop the audio player
-                            assetsAudioPlayer.stop();
-                            var finalScore = widget.score;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      GameOver(score: finalScore)),
-                            );
-                          }
-                        },
                       ),
                     ),
-                  ),
-                ],
+                    Container(
+                      child: Card(
+                        color: Colors.white,
+                        child: ListTile(
+                          title: Text(
+                            widget.allAnswers[3],
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'roboto'),
+                          ),
+                          onTap: () {
+                            widget.counter++;
+                            //if the answer is correct
+                            if (widget.allAnswers[3] == widget.correctAnswer) {
+                              assetsAudioPlayer.open(
+                                Audio("assets/audios/correct.mp3"),
+                                autoStart: true,
+                                showNotification: true,
+                              );
+                              widget.score = widget.score + 10;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Question(
+                                        counter: widget.counter,
+                                        data: widget.data,
+                                        score: widget.score,
+                                        category: widget.category)),
+                              );
+                            } else {
+                              //stop the audio player
+                              assetsAudioPlayer.stop();
+                              var finalScore = widget.score;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        GameOver(score: finalScore)),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

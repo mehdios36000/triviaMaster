@@ -28,7 +28,6 @@ class _HomeState extends State<Home> {
         //fill the screen with the bg whole screen
         SvgPicture.asset("assets/images/bg.svg",
             fit: BoxFit.fill, height: double.infinity, width: double.infinity),
-
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
