@@ -32,6 +32,16 @@ class _QuestionState extends State<Question> {
   @override
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
+    Future.delayed(Duration(seconds: 30), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GameOver(
+            score: widget.score,
+          ),
+        ),
+      );
+    });
     assetsAudioPlayer.open(
       Audio("assets/audios/questions.mp3"),
       autoStart: true,
