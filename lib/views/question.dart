@@ -8,6 +8,7 @@ import 'package:triviamaster/views/gameover.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:http/http.dart' as http;
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:triviamaster/views/home.dart';
 
 class Question extends StatefulWidget {
   List<dynamic> data = [];
@@ -67,7 +68,13 @@ class _QuestionState extends State<Question> {
           child: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
             onPressed: () {
-              Navigator.pop(context);
+              assetsAudioPlayer.stop();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(),
+                ),
+              );
             },
           ),
         ),
@@ -161,7 +168,7 @@ class _QuestionState extends State<Question> {
                               //stop the audio player
                               assetsAudioPlayer.stop();
                               var finalScore = widget.score;
-            
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
