@@ -61,7 +61,7 @@ class _SubjectsState extends State<Subjects> {
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                           fontFamily: 'Roboto'),
+                          fontFamily: 'Roboto'),
                     ),
                   ),
                   SizedBox(
@@ -85,14 +85,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=science&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="science";
+                          var category = "science";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),
@@ -118,14 +122,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=music&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="music";
+                          var category = "music";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),
@@ -151,14 +159,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="film_and_tv";
+                          var category = "film_and_tv";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),
@@ -184,14 +196,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=history&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="history";
+                          var category = "history";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),
@@ -217,14 +233,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=geography&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="geography";
+                          var category = "geography";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),
@@ -250,14 +270,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=sport_and_leisure&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="sport_and_leisure";
+                          var category = "sport_and_leisure";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),
@@ -283,14 +307,18 @@ class _SubjectsState extends State<Subjects> {
                           var url =
                               "https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=50";
                           var response = await http.get(Uri.parse(url));
-                          var category="general_knowledge";
+                          var category = "general_knowledge";
                           List<dynamic> data = json.decode(response.body);
                           var counter = 0;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Question(
-                                    counter: counter, data: data, score: 0,category:category)),
+                                    counter: counter,
+                                    data: data,
+                                    score: 0,
+                                    category: category,
+                                    sound: widget.audio)),
                           );
                         },
                       ),

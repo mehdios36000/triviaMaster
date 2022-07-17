@@ -18,12 +18,14 @@ class Question extends StatefulWidget {
   List<dynamic> allAnswers = [];
   String category = "";
   var score = 0;
+  var sound = AssetsAudioPlayer();
   Question(
       {Key? key,
       required this.counter,
       required this.data,
       required this.score,
-      required this.category})
+      required this.category,
+      required this.sound})
       : super(key: key);
 
   @override
@@ -35,13 +37,13 @@ class _QuestionState extends State<Question> {
 
   @override
   Widget build(BuildContext context) {
-    final assetsAudioPlayer = AssetsAudioPlayer();
-    assetsAudioPlayer.open(
-      Audio("assets/audios/questions.mp3"),
-      autoStart: true,
-      loopMode: LoopMode.single,
-      showNotification: true,
-    );
+    if (!widget.sound.isPlaying.value) {
+      widget.sound.open(
+        Audio("assets/audios/questions.mp3"),
+        autoStart: true,
+        showNotification: true,
+      );
+    }
     if (widget.counter == 50) {
       var url =
           "https://the-trivia-api.com/api/questions?categories=${widget.category}&limit=50";
@@ -71,7 +73,7 @@ class _QuestionState extends State<Question> {
                 child: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
                   onPressed: () {
-                    assetsAudioPlayer.stop();
+                    widget.sound.stop();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -113,7 +115,7 @@ class _QuestionState extends State<Question> {
                       backgroundColor: Colors.white,
                       progressColor: Colors.blueGrey,
                       onAnimationEnd: () {
-                        assetsAudioPlayer.stop();
+                        widget.sound.stop();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -150,7 +152,8 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[0] ==
                                     widget.correctAnswer) {
-                                  assetsAudioPlayer.open(
+                                  widget.sound.stop();
+                                  widget.sound.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -164,11 +167,12 @@ class _QuestionState extends State<Question> {
                                             counter: widget.counter,
                                             data: widget.data,
                                             score: widget.score,
-                                            category: widget.category)),
+                                            category: widget.category,
+                                            sound: widget.sound)),
                                   );
                                 } else {
                                   //stop the audio player
-                                  assetsAudioPlayer.stop();
+                                  widget.sound.stop();
                                   var finalScore = widget.score;
 
                                   Navigator.push(
@@ -199,7 +203,8 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[1] ==
                                     widget.correctAnswer) {
-                                  assetsAudioPlayer.open(
+                                  widget.sound.stop();
+                                  widget.sound.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -212,11 +217,12 @@ class _QuestionState extends State<Question> {
                                             counter: widget.counter,
                                             data: widget.data,
                                             score: widget.score,
-                                            category: widget.category)),
+                                            category: widget.category,
+                                            sound: widget.sound)),
                                   );
                                 } else {
                                   //stop the audio player
-                                  assetsAudioPlayer.stop();
+                                  widget.sound.stop();
                                   var finalScore = widget.score;
                                   Navigator.push(
                                     context,
@@ -246,7 +252,8 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[2] ==
                                     widget.correctAnswer) {
-                                  assetsAudioPlayer.open(
+                                  widget.sound.stop();
+                                  widget.sound.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -259,11 +266,12 @@ class _QuestionState extends State<Question> {
                                             counter: widget.counter,
                                             data: widget.data,
                                             score: widget.score,
-                                            category: widget.category)),
+                                            category: widget.category,
+                                            sound: widget.sound)),
                                   );
                                 } else {
                                   //stop the audio player
-                                  assetsAudioPlayer.stop();
+                                  widget.sound.stop();
                                   var finalScore = widget.score;
                                   Navigator.push(
                                     context,
@@ -293,7 +301,8 @@ class _QuestionState extends State<Question> {
                                 //if the answer is correct
                                 if (widget.allAnswers[3] ==
                                     widget.correctAnswer) {
-                                  assetsAudioPlayer.open(
+                                  widget.sound.stop();
+                                  widget.sound.open(
                                     Audio("assets/audios/correct.wav"),
                                     autoStart: true,
                                     showNotification: true,
@@ -306,11 +315,12 @@ class _QuestionState extends State<Question> {
                                             counter: widget.counter,
                                             data: widget.data,
                                             score: widget.score,
-                                            category: widget.category)),
+                                            category: widget.category,
+                                            sound: widget.sound)),
                                   );
                                 } else {
                                   //stop the audio player
-                                  assetsAudioPlayer.stop();
+                                  widget.sound.stop();
                                   var finalScore = widget.score;
                                   Navigator.push(
                                     context,

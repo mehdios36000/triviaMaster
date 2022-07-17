@@ -16,12 +16,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final assetsAudioPlayer = AssetsAudioPlayer();
-    assetsAudioPlayer.open(
-      Audio("assets/audios/background.mp3"),
-      autoStart: true,
-      loopMode: LoopMode.single,
-      showNotification: true,
-    );
+    //check if the audio is playing
+    if (!assetsAudioPlayer.isPlaying.value) {
+      assetsAudioPlayer.open(
+        Audio("assets/audios/background.mp3"),
+        autoStart: true,
+        showNotification: true,
+      );
+    }
+
     return Scaffold(
         body: Stack(
       children: <Widget>[
